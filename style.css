@@ -1,0 +1,28 @@
+* {
+  font-family: "Courier New";
+  font-size: 20px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+.calculator {
+  border: 1px solid #000000;
+  padding: 20px;
+}
+.display {
+  border: 1px solid #000000;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 280px;
+}
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+button {
+  border: 1px solid #000000;
+  height: 50px;
+}
