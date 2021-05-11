@@ -11,10 +11,10 @@ let digitWasLastPressed = false;
 
 function calculate(a, b, operator) {
   const operators = {
-    "+": parseInt(a)+parseInt(b),
-    "-": parseInt(a)-parseInt(b),
-    "\u00D7": parseInt(a)*parseInt(b),
-    "\u00F7": parseInt(a)/parseInt(b)
+    "+": a + b,
+    "-": a - b,
+    "\u00D7": a * b,
+    "\u00F7": a / b
   };
   let result = operators[operator];
   return result;
@@ -44,13 +44,13 @@ operatorKeys.forEach(function(operatorKey) {
     if (digitWasLastPressed) { // does not activate if user pressed a second operator in a row
       if (operand1 !== "") {
         // if we already have the first operand, calculate and display the result
-        operand2 = display.textContent;
+        operand2 = parseInt(display.textContent);
         display.textContent = calculate(operand1, operand2, selectedOperator);
         // save the result as the new first operand for future calculations
-        operand1 = display.textContent;
+        operand1 = parseFloat(display.textContent);
       } else {
       // save the number on the display as the first operand, since we don't have any
-        operand1 = display.textContent;
+        operand1 = parseInt(display.textContent);
       }
     }
     // if user presses a few operators in a row, the code above gets ignored
@@ -66,9 +66,9 @@ equalsKey.addEventListener('click', function() {
   // check if we already have the first operand and the second number on the display.
   // if yes: calculate result. if not: do nothing.
   if (operand1 !== "" && digitWasLastPressed) {
-    operand2 = display.textContent;
+    operand2 = parseInt(display.textContent);
     display.textContent = calculate(operand1, operand2, selectedOperator);
-    operand1 = display.textContent;
+    operand1 = parseFloat(display.textContent);
     digitWasLastPressed = false;
   }
 });
