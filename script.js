@@ -2,6 +2,7 @@ const display = document.querySelector(".display");
 const numberKeys = document.querySelectorAll(".numberKey");
 const operatorKeys = document.querySelectorAll(".operatorKey");
 const clearKey = document.querySelector(".clearKey");
+const decimalKey = document.querySelector(".decimalKey");
 const equalsKey = document.querySelector(".equalsKey");
 
 let operand1 = "";
@@ -44,13 +45,13 @@ operatorKeys.forEach(function(operatorKey) {
     if (digitWasLastPressed) { // does not activate if user pressed a second operator in a row
       if (operand1 !== "") {
         // if we already have the first operand, calculate and display the result
-        operand2 = parseInt(display.textContent);
+        operand2 = parseFloat(display.textContent);
         display.textContent = calculate(operand1, operand2, selectedOperator);
         // save the result as the new first operand for future calculations
         operand1 = parseFloat(display.textContent);
       } else {
       // save the number on the display as the first operand, since we don't have any
-        operand1 = parseInt(display.textContent);
+        operand1 = parseFloat(display.textContent);
       }
     }
     // if user presses a few operators in a row, the code above gets ignored
@@ -61,12 +62,21 @@ operatorKeys.forEach(function(operatorKey) {
   });
 });
 
+// add event listener to the decimal keys
+decimalKey.addEventListener('click', function() {
+  const decimalRegex = /\./;
+  if (!decimalRegex.test(display.textContent)) {
+    display.textContent += '.';
+    digitWasLastPressed = true;
+  }
+});
+
 // add event listener to the equals key
 equalsKey.addEventListener('click', function() {
   // check if we already have the first operand and the second number on the display.
   // if yes: calculate result. if not: do nothing.
   if (operand1 !== "" && digitWasLastPressed) {
-    operand2 = parseInt(display.textContent);
+    operand2 = parseFloat(display.textContent);
     display.textContent = calculate(operand1, operand2, selectedOperator);
     operand1 = parseFloat(display.textContent);
     digitWasLastPressed = false;
