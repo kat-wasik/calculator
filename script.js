@@ -19,7 +19,8 @@ function calculate(a, b, operator) {
     "\u00F7": a / b
   };
   let result = operators[operator];
-  return result;
+  // trim result so 10 / 3 displays 3.333333333333333 instead of 3.3333333333333335
+  return result.toString().slice(0,17);
 }
 
 // add event listeners to all number keys
