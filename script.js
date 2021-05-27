@@ -4,6 +4,7 @@ const operatorKeys = document.querySelectorAll(".operatorKey");
 const clearKey = document.querySelector(".clearKey");
 const decimalKey = document.querySelector(".decimalKey");
 const equalsKey = document.querySelector(".equalsKey");
+const backspaceKey = document.querySelector(".backspaceKey");
 
 let operand1 = "";
 let operand2 = "";
@@ -90,3 +91,13 @@ clearKey.addEventListener('click', function() {
   operand1 = "";
   digitWasLastPressed = false;
 });
+
+// add event listener to the backspace key
+backspaceKey.addEventListener('click', function() {
+  if (display.textContent.length === 1) {
+    display.textContent = '0';
+  } else {
+    display.textContent = display.textContent.slice(0,-1);
+  }
+  digitWasLastPressed = true;
+})

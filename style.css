@@ -22,8 +22,8 @@
     'one two three add'
     'four five six subtract'
     'seven eight nine multiply'
-    'zero zero decimal divide'
-    'clear clear equals equals';
+    'zero decimal equals divide'
+    'clear clear backspace backspace';
   grid-column-gap: 5px;
   grid-row-gap: 5px;
 }
@@ -49,10 +49,6 @@ button {
   grid-area: divide;
 }
 
-#zero {
-  grid-area: zero;
-}
-
 .decimalKey {
   grid-are: decimal;
 }
@@ -63,4 +59,8 @@ button {
 
 .equalsKey {
   grid-area: equals;
+}
+
+.backspaceKey {
+  grid-area: backspace;
 }
