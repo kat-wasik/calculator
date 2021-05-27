@@ -19,9 +19,9 @@
 .keys {
   display: grid;
   grid-template-areas:
-    'one two three add'
+    'seven eight nine add'
     'four five six subtract'
-    'seven eight nine multiply'
+    'one two three multiply'
     'zero decimal equals divide'
     'clear clear backspace backspace';
   grid-column-gap: 5px;
