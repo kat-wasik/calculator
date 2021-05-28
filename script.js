@@ -5,6 +5,7 @@ const clearKey = document.querySelector(".clearKey");
 const decimalKey = document.querySelector(".decimalKey");
 const equalsKey = document.querySelector(".equalsKey");
 const backspaceKey = document.querySelector(".backspaceKey");
+const negativeKey = document.querySelector(".negativeKey");
 
 let operand1 = "";
 let operand2 = "";
@@ -101,4 +102,19 @@ backspaceKey.addEventListener('click', function() {
     display.textContent = display.textContent.slice(0,-1);
   }
   digitWasLastPressed = true;
+})
+
+// add event listener to the +/- keys
+negativeKey.addEventListener('click', function() {
+  if (display.textContent !== "0") {
+    if (display.textContent[0] === "-") {
+      display.textContent = display.textContent.slice(1);
+    } else {
+      display.textContent = '-' + display.textContent;
+    }
+  }
+  // if user wants to add/remove '-' to the result of previous calculation we need to overwrite the operand1 value
+  if (operand1) {
+    operand1 = parseFloat(display.textContent);
+  }
 })

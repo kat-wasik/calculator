@@ -18,12 +18,13 @@
 }
 .keys {
   display: grid;
+  grid-auto-columns: 1fr;
   grid-template-areas:
     'seven eight nine add'
     'four five six subtract'
     'one two three multiply'
-    'zero decimal equals divide'
-    'clear clear backspace backspace';
+    'zero decimal negative divide'
+    'clear backspace equals equals';
   grid-column-gap: 5px;
   grid-row-gap: 5px;
 }
@@ -63,4 +64,8 @@ button {
 
 .backspaceKey {
   grid-area: backspace;
+}
+
+.negativeKey {
+  grid-area: negative;
 }
