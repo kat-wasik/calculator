@@ -1,20 +1,41 @@
+:root {
+  --display: #96A790;
+  --pink: #FA6E66;
+  --light: #E9E5E0;
+  --medium: #898978;
+  --dark: #242223;
+  --defaultShadow: rgb(153, 153, 153) 0px 10px 0px 0px;
+  --pressedShadow: rgb(153, 153, 153) 0px 2px 0px 0px;
+  --translate: translateY(8px);
+}
+
 * {
   font-family: "Courier New";
-  font-size: 20px;
+  font-size: 32px;
+}
+
+body {
+  background-color: var(--dark);
 }
 .wrapper {
   display: flex;
   justify-content: center;
+  padding-top: 30px;
 }
 .calculator {
-  border: 1px solid #000000;
-  padding: 20px;
+  background-color: var(--light);
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 10px #999;
 }
 .display {
-  border: 1px solid #000000;
+  background-color: var(--display);
+  color: var(--dark);
+  text-align: right;
   padding: 10px;
-  margin-bottom: 20px;
-  width: 280px;
+  margin: 20px 0;
+  width: 18ch;
+  box-shadow: inset 0 0 5px 5px var(--medium);
 }
 .keys {
   display: grid;
@@ -26,12 +47,43 @@
     'zero decimal negative divide'
     'clear backspace equals equals';
   grid-column-gap: 5px;
-  grid-row-gap: 5px;
+  grid-row-gap: 20px;
 }
 
 button {
-  border: 1px solid #000000;
-  height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 24px;
+  padding: 1ch 0;
+  cursor: pointer;
+  box-shadow: var(--defaultShadow);
+}
+
+button:active {
+  transform: var(--translate);
+  box-shadow: var(--pressedShadow);
+}
+
+.decimalKey {
+  grid-area: decimal;
+}
+
+.clearKey {
+  grid-area: clear;
+  background-color: var(--pink);
+  color: var(--dark);
+}
+
+.equalsKey {
+  grid-area: equals;
+}
+
+.backspaceKey {
+  grid-area: backspace;
+}
+
+.negativeKey {
+  grid-area: negative;
 }
 
 #add {
@@ -50,22 +102,13 @@ button {
   grid-area: divide;
 }
 
-.decimalKey {
-  grid-are: decimal;
+.numberKey, .decimalKey, .negativeKey {
+  background-color: var(--medium);
+  color: var(--light);
 }
 
-.clearKey {
-  grid-area: clear;
-}
-
-.equalsKey {
-  grid-area: equals;
-}
-
-.backspaceKey {
-  grid-area: backspace;
-}
-
-.negativeKey {
-  grid-area: negative;
+.operatorKey, .backspaceKey, .equalsKey {
+  background-color: var(--light);
+  border: 1px solid #999;
+  color: var(--dark);
 }

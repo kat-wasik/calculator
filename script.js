@@ -12,6 +12,25 @@ let operand2 = "";
 let selectedOperator = "";
 let digitWasLastPressed = false;
 
+function pressOperatorKey(operator) {
+  const pressedColor = getComputedStyle(document.body).getPropertyValue('--pink');
+  const translate = getComputedStyle(document.body).getPropertyValue('--translate');
+  const pressedShadow = getComputedStyle(document.body).getPropertyValue('--pressedShadow');
+
+  selectedOperator.style.color = pressedColor;
+  selectedOperator.style.transform = translate;
+  selectedOperator.style.boxShadow = pressedShadow;
+}
+
+function resetOperatorKey(operator) {
+  const notPressedColor = getComputedStyle(document.body).getPropertyValue('--dark');
+  const defaultShadow = getComputedStyle(document.body).getPropertyValue('--defaultShadow');
+
+  selectedOperator.style.color = notPressedColor;
+  selectedOperator.style.transform = "";
+  selectedOperator.style.boxShadow = defaultShadow;
+}
+
 function calculate(a, b, operator) {
   const operators = {
     "+": a + b,
@@ -49,7 +68,7 @@ operatorKeys.forEach(function(operatorKey) {
       if (operand1 !== "") {
         // if we already have the first operand, calculate and display the result
         operand2 = parseFloat(display.textContent);
-        display.textContent = calculate(operand1, operand2, selectedOperator);
+        display.textContent = calculate(operand1, operand2, selectedOperator.textContent);
         // save the result as the new first operand for future calculations
         operand1 = parseFloat(display.textContent);
       } else {
@@ -60,7 +79,11 @@ operatorKeys.forEach(function(operatorKey) {
     // if user presses a few operators in a row, the code above gets ignored
     // and only the last operator is remembered for calculation.
     // e.g. input "2+-*2" is calculated as "2*2"
-    selectedOperator = event.target.textContent;
+    if (selectedOperator !== "") {
+      resetOperatorKey(selectedOperator);
+    }
+    selectedOperator = event.target;
+    pressOperatorKey(selectedOperator);
     digitWasLastPressed = false;
   });
 });
@@ -80,9 +103,10 @@ equalsKey.addEventListener('click', function() {
   // if yes: calculate result. if not: do nothing.
   if (operand1 !== "" && digitWasLastPressed) {
     operand2 = parseFloat(display.textContent);
-    display.textContent = calculate(operand1, operand2, selectedOperator);
+    display.textContent = calculate(operand1, operand2, selectedOperator.textContent);
     operand1 = parseFloat(display.textContent);
     digitWasLastPressed = false;
+    resetOperatorKey(selectedOperator);
   }
 });
 
@@ -92,6 +116,7 @@ clearKey.addEventListener('click', function() {
   display.textContent = "0";
   operand1 = "";
   digitWasLastPressed = false;
+  resetOperatorKey(selectedOperator);
 });
 
 // add event listener to the backspace key
