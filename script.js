@@ -10,7 +10,7 @@ const negativeKey = document.querySelector(".negativeKey");
 let operand1 = "";
 let operand2 = "";
 let selectedOperator = "";
-let digitWasLastPressed = false;
+let digitWasLastPressed = true;
 
 function pressOperatorKey(operator) {
   const pressedColor = getComputedStyle(document.body).getPropertyValue('--pink');
@@ -115,7 +115,7 @@ clearKey.addEventListener('click', function() {
   // reset important values
   display.textContent = "0";
   operand1 = "";
-  digitWasLastPressed = false;
+  digitWasLastPressed = true;
   resetOperatorKey(selectedOperator);
 });
 
