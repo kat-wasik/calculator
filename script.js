@@ -131,15 +131,17 @@ backspaceKey.addEventListener('click', function() {
 
 // add event listener to the +/- keys
 negativeKey.addEventListener('click', function() {
+  // Save the number to which we want to add/remove the '-' sign for future reference
+  let originalNumber = display.textContent;
   if (display.textContent !== "0") {
     if (display.textContent[0] === "-") {
       display.textContent = display.textContent.slice(1);
     } else {
       display.textContent = '-' + display.textContent;
     }
+    // if user wants to add/remove '-' to the result of previous calculation we need to overwrite the operand1 value
+    if (operand1 == originalNumber) { // won't work with strict equality sign!
+      operand1 = parseFloat(display.textContent);
+    }
   }
-  // if user wants to add/remove '-' to the result of previous calculation we need to overwrite the operand1 value
-  if (operand1) {
-    operand1 = parseFloat(display.textContent);
-  }
-})
+});
