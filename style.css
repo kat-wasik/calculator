@@ -11,12 +11,17 @@
 
 * {
   font-family: "Courier New";
-  font-size: 32px;
+}
+
+@media only screen and (min-width: 768px) {
+  .display {font-size: 32px;}
+  button {font-size: 24px;}
 }
 
 body {
   background-color: var(--dark);
 }
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -53,7 +58,7 @@ body {
 button {
   border-radius: 10px;
   border: none;
-  font-size: 24px;
+  /* font-size: 22px; */
   padding: 1ch 0;
   cursor: pointer;
   box-shadow: var(--defaultShadow);
