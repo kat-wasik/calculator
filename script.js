@@ -39,8 +39,13 @@ function calculate(a, b, operator) {
     "\u00F7": a / b
   };
   let result = operators[operator];
-  // trim result so 10 / 3 displays 3.333333333333333 instead of 3.3333333333333335
-  return result.toString().slice(0,17);
+  // trim result so 10 / 3 displays as 3.333333333333333 instead of 3.3333333333333335
+  if (result.toString()[0] == '-') {
+    result = result.toString().slice(0,18);
+  } else {
+    result = result.toString().slice(0,17);
+  }
+  return result;
 }
 
 // add event listeners to all number keys
@@ -52,8 +57,7 @@ numberKeys.forEach(function(numberKey) {
     // also start a new number after an operator was pressed
     if (display.textContent === "0" || !digitWasLastPressed) {
       display.textContent = digit;
-    } else if (display.textContent.length < 16) {
-      // The MAX_SAFE_INTEGER constant has a value of 9007199254740991 so anything above 16 digits won't work anyway
+    } else if (display.textContent.length < 17) {
       display.textContent += digit;
     }
     digitWasLastPressed = true;

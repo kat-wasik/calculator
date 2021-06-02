@@ -7,5 +7,4 @@ Live: https://kat-wasik.github.io/calculator/
 - Entering second number followed by any mathematical operator displays the result of the first equation and lets the user enter another number for the next calculation.
 - If more than one operator pressed in a sequence only the last one gets remembered for the next calculation.
 - Operator changes color after pressing and button stays pressed down so the user knows which operator was selected for the current calculation.
-- Input of maximum 16 digits permitted.
-- Maximum output 17 digits.
+- Input and output of maximum 17 digits permitted (not counting the '-' sign).
