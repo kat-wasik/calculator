@@ -58,7 +58,6 @@ body {
 button {
   border-radius: 10px;
   border: none;
-  /* font-size: 22px; */
   padding: 1ch 0;
   cursor: pointer;
   box-shadow: var(--defaultShadow);
