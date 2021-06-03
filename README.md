@@ -8,3 +8,8 @@ Live: https://kat-wasik.github.io/calculator/
 - If more than one operator pressed in a sequence only the last one gets remembered for the next calculation.
 - Operator changes color after pressing and button stays pressed down so the user knows which operator was selected for the current calculation.
 - Input and output of maximum 17 digits permitted (not counting the '-' sign).
+- Input by keyboard possible. Supported keys: 0 1 2 3 4 5 6 7 8 9 0 + - * / = , . Enter Backspace Delete F9
+
+To do:
+
+- Add capability of removing decimal point by pressing the decimal key twice in a row.

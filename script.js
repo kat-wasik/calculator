@@ -32,6 +32,13 @@ function resetOperatorKey() {
   }
 }
 
+function pressButton(key) {
+  key.classList.add('active');
+  setTimeout(function() {
+    key.classList.remove('active')
+  }, 200);
+}
+
 function calculate(a, b, operator) {
   const operators = {
     "+": a + b,
@@ -52,6 +59,7 @@ function calculate(a, b, operator) {
 // add event listeners to all number keys
 numberKeys.forEach(function(numberKey) {
   numberKey.addEventListener('click', function(event) {
+    pressButton(numberKey);
     // determine which digit got pressed
     let digit = event.target.textContent;
     // prevent user from starting numbers with zeros
@@ -93,6 +101,7 @@ operatorKeys.forEach(function(operatorKey) {
 
 // add event listener to the decimal keys
 decimalKey.addEventListener('click', function() {
+  pressButton(decimalKey);
   const decimalRegex = /\./;
   if (!decimalRegex.test(display.textContent)) {
     display.textContent += '.';
@@ -102,6 +111,7 @@ decimalKey.addEventListener('click', function() {
 
 // add event listener to the equals key
 equalsKey.addEventListener('click', function() {
+  pressButton(equalsKey);
   // check if we already have the first operand and the second number on the display.
   // if yes: calculate result. if not: do nothing.
   if (operand1 !== "" && digitWasLastPressed) {
@@ -115,6 +125,7 @@ equalsKey.addEventListener('click', function() {
 
 // add event listener to the clear key
 clearKey.addEventListener('click', function() {
+  pressButton(clearKey);
   // reset important values
   display.textContent = "0";
   operand1 = "";
@@ -124,6 +135,7 @@ clearKey.addEventListener('click', function() {
 
 // add event listener to the backspace key
 backspaceKey.addEventListener('click', function() {
+  pressButton(backspaceKey);
   if (display.textContent.length === 1) {
     display.textContent = '0';
   } else {
@@ -134,6 +146,7 @@ backspaceKey.addEventListener('click', function() {
 
 // add event listener to the +/- keys
 negativeKey.addEventListener('click', function() {
+  pressButton(negativeKey);
   // Save the number to which we want to add/remove the '-' sign for future reference
   let originalNumber = display.textContent;
   if (display.textContent !== "0") {
@@ -148,3 +161,93 @@ negativeKey.addEventListener('click', function() {
     }
   }
 });
+
+document.addEventListener('keydown', function() {
+  switch(event.key) {
+    case '7':
+      event.preventDefault();
+      numberKeys[0].click();
+      numberKeys[0].classList.add("active");
+      break;
+    case '8':
+      event.preventDefault();
+      numberKeys[1].click();
+      break;
+    case '9':
+      event.preventDefault();
+      numberKeys[2].click();
+      break;
+    case '4':
+      event.preventDefault();
+      numberKeys[3].click();
+      break;
+    case '5':
+      event.preventDefault();
+      numberKeys[4].click();
+      break;
+    case '6':
+      event.preventDefault();
+      numberKeys[5].click();
+      break;
+    case '1':
+      event.preventDefault();
+      numberKeys[6].click();
+      break;
+    case '2':
+      event.preventDefault();
+      numberKeys[7].click();
+      break;
+    case '3':
+      event.preventDefault();
+      numberKeys[8].click();
+      break;
+    case '0':
+      event.preventDefault();
+      numberKeys[9].click();
+      break;
+    case '+':
+      event.preventDefault();
+      operatorKeys[0].click();
+      break;
+    case '-':
+      event.preventDefault();
+      operatorKeys[1].click();
+      break;
+    case '*':
+      event.preventDefault();
+      operatorKeys[2].click();
+      break;
+    case '/':
+      event.preventDefault();
+      operatorKeys[3].click();
+      break;
+    case 'Backspace':
+      event.preventDefault();
+      backspaceKey.click();
+      break;
+    case '=':
+      event.preventDefault();
+      equalsKey.click();
+      break;
+    case 'Enter':
+      event.preventDefault();
+      equalsKey.click();
+      break;
+    case 'Delete':
+      event.preventDefault();
+      clearKey.click();
+      break;
+    case '.':
+      event.preventDefault();
+      decimalKey.click();
+      break;
+    case ',':
+      event.preventDefault();
+      decimalKey.click();
+      break;
+    case 'F9':
+      event.preventDefault();
+      negativeKey.click();
+      break;
+  }
+})
