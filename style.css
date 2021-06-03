@@ -64,7 +64,7 @@ button {
   box-shadow: var(--defaultShadow);
 }
 
-.active {
+button:active {
   transform: var(--translate);
   box-shadow: var(--pressedShadow);
 }
