@@ -167,7 +167,6 @@ document.addEventListener('keydown', function() {
     case '7':
       event.preventDefault();
       numberKeys[0].click();
-      numberKeys[0].classList.add("active");
       break;
     case '8':
       event.preventDefault();
