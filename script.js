@@ -12,7 +12,7 @@ let operand2 = "";
 let selectedOperator = "";
 let digitWasLastPressed = true;
 
-function pressOperatorKey(operator) {
+function pressOperatorKey() {
   const pressedColor = getComputedStyle(document.body).getPropertyValue('--pink');
   const translate = getComputedStyle(document.body).getPropertyValue('--translate');
   const pressedShadow = getComputedStyle(document.body).getPropertyValue('--pressedShadow');
@@ -22,13 +22,14 @@ function pressOperatorKey(operator) {
   selectedOperator.style.boxShadow = pressedShadow;
 }
 
-function resetOperatorKey(operator) {
+function resetOperatorKey() {
   const notPressedColor = getComputedStyle(document.body).getPropertyValue('--dark');
   const defaultShadow = getComputedStyle(document.body).getPropertyValue('--defaultShadow');
-
-  selectedOperator.style.color = notPressedColor;
-  selectedOperator.style.transform = "";
-  selectedOperator.style.boxShadow = defaultShadow;
+  if (selectedOperator !== '') {
+    selectedOperator.style.color = notPressedColor;
+    selectedOperator.style.transform = "";
+    selectedOperator.style.boxShadow = defaultShadow;
+  }
 }
 
 function calculate(a, b, operator) {
@@ -83,11 +84,9 @@ operatorKeys.forEach(function(operatorKey) {
     // if user presses a few operators in a row, the code above gets ignored
     // and only the last operator is remembered for calculation.
     // e.g. input "2+-*2" is calculated as "2*2"
-    if (selectedOperator !== "") {
-      resetOperatorKey(selectedOperator);
-    }
+    resetOperatorKey();
     selectedOperator = event.target;
-    pressOperatorKey(selectedOperator);
+    pressOperatorKey();
     digitWasLastPressed = false;
   });
 });
@@ -110,7 +109,7 @@ equalsKey.addEventListener('click', function() {
     display.textContent = calculate(operand1, operand2, selectedOperator.textContent);
     operand1 = parseFloat(display.textContent);
     digitWasLastPressed = false;
-    resetOperatorKey(selectedOperator);
+    resetOperatorKey();
   }
 });
 
@@ -120,7 +119,7 @@ clearKey.addEventListener('click', function() {
   display.textContent = "0";
   operand1 = "";
   digitWasLastPressed = true;
-  resetOperatorKey(selectedOperator);
+  resetOperatorKey();
 });
 
 // add event listener to the backspace key
