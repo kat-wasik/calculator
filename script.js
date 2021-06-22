@@ -103,7 +103,9 @@ operatorKeys.forEach(function(operatorKey) {
 decimalKey.addEventListener('click', function() {
   pressButton(decimalKey);
   const decimalRegex = /\./;
-  if (!decimalRegex.test(display.textContent)) {
+  if (display.textContent[display.textContent.length - 1] === '.') {
+    display.textContent = display.textContent.slice(0, -1);
+  } else if (!decimalRegex.test(display.textContent)) {
     display.textContent += '.';
     digitWasLastPressed = true;
   }
